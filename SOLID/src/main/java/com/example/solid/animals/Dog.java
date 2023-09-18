@@ -3,8 +3,8 @@ package com.example.solid.animals;
 public class Dog extends Animal{
     private String breed;
 
-    public Dog(Integer id ,String name, String size, String sound, String breed) {
-        super(id ,name, size, sound);
+    public Dog(Integer id ,String name, String size, String sound,String type, String breed) {
+        super(id ,name, size, sound,type);
         this.breed = breed;
     }
 

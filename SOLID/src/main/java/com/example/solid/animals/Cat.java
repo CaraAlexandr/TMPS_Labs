@@ -9,8 +9,8 @@ import jakarta.persistence.*;
 public class Cat extends Animal {
     private int lives;
 
-    public Cat(Integer id, String name, String size, String sound, int lives) {
-        super(id, name, size, sound);
+    public Cat(Integer id, String name, String size, String sound,String type, int lives) {
+        super(id, name, size, sound,type);
         this.lives = lives;
     }
 

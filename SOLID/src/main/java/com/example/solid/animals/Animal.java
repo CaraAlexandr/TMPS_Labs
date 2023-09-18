@@ -2,11 +2,14 @@ package com.example.solid.animals;
 
 import com.example.solid.interfaces.Critter;
 import jakarta.persistence.*;
-
+import lombok.*;
 import java.util.Objects;
 
 //Single Responsibility
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "animal")
 public class Animal implements Critter {
 
@@ -23,19 +26,17 @@ public class Animal implements Critter {
     private String name;
     private String size;
     private String sound;
+    private String type;
 
-    public Animal(Integer id, String name, String size, String sound) {
+    public Animal(Integer id, String name, String size, String sound,String type) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.sound = sound;
+        this.type = type;
     }
 
-    public Animal() {
-
-    }
-
-    public Integer getId() {
+/*   public Integer getId() {
         return id;}
 
     public String getName() {
@@ -50,8 +51,6 @@ public class Animal implements Critter {
         return sound;
     }
 
-    public void setId(Integer id) {this.id = id;}
-
     public void setName(String name) {
         this.name = name;
     }
@@ -62,7 +61,7 @@ public class Animal implements Critter {
 
     public void setSound(String sound) {
         this.sound = sound;
-    }
+    }*/
 
     public int eat(int amount) {
         System.out.println("Animal eats " + amount + " units of food");
