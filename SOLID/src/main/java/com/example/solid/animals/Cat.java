@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "cat")
 public class Cat extends Animal {
-    private int id;
     private int lives;
 
     public Cat(Integer id, String name, String size, String sound, int lives) {

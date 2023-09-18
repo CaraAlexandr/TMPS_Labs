@@ -7,6 +7,7 @@ import java.util.Objects;
 
 //Single Responsibility
 @Entity
+@Table(name = "animal")
 public class Animal implements Critter {
 
     @Id
@@ -34,7 +35,8 @@ public class Animal implements Critter {
 
     }
 
-    public Integer getId() {return id;}
+    public Integer getId() {
+        return id;}
 
     public String getName() {
         return name;
@@ -92,4 +94,6 @@ public class Animal implements Critter {
                 ", sound='" + sound + '\'' +
                 '}';
     }
+
+
 }
