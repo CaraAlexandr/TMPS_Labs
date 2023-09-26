@@ -73,6 +73,11 @@ public class Animal implements Critter {
     }
 
     @Override
+    public void setLives(int lives) {
+
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Animal animal)) return false;

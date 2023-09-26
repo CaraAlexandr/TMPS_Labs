@@ -5,4 +5,6 @@ public interface Critter {
 
     void sleep();
 
+    void setLives(int lives);
+
 }

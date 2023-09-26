@@ -5,6 +5,7 @@ import com.example.solid.animals.Cat;
 import com.example.solid.interfaces.AnimalRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.List;
 @RequestMapping("/api/animals")
 public class SolidApplication {
 
-    private final AnimalRepository animalRepository;
+    private final JpaRepository animalRepository;
 
-    public SolidApplication(AnimalRepository animalRepository) {
+    public SolidApplication(JpaRepository animalRepository) {
         this.animalRepository = animalRepository;
     }
 
@@ -43,7 +44,7 @@ public class SolidApplication {
     record NewCat(String name, String size, String sound, int lives) {}
     @PostMapping(path = "/cat")
     public void addCat(@RequestBody NewCat request) {
-        Cat cat = new Cat();
+        Animal cat = new Cat();
         cat.setType("cat");
         cat.setName(request.name());
         cat.setSize(request.size());
