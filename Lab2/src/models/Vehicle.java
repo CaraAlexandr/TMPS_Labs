@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Cloneable {
     private String color;
     private String engineType;
     private int numberOfWheels;
@@ -30,4 +30,16 @@ public abstract class Vehicle {
 
 
     public abstract void displayDetails();
+
+    //Prototype pattern
+    @Override
+    public Object clone() {
+        Object clone = null;
+        try {
+            clone = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return clone;
+    }
 }

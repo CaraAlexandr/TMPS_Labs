@@ -15,7 +15,7 @@ In the vehicle manufacturing domain, we have various types of vehicles like Cars
 ### Purpose
 The Factory Method Pattern provides an interface for creating instances of a class, with its subclasses deciding which class to instantiate. This pattern abstracts the instantiation process and delegates it to the subclasses.
 
-Implementation
+### Implementation
 In our domain, the VehicleFactory class uses the Factory Method pattern to create specific types of vehicles.
 
 VehicleFactory.java
@@ -58,5 +58,70 @@ VehicleBuilder carBuilder = new CarBuilder();
         .setNumberOfWheels(4)
         .build();
 ```
+## Singleton Pattern - Completion
+### Purpose
+The Singleton Pattern ensures that a class has only one instance and provides a global point of access to it. This pattern is used when you want to eliminate the option of instantiating more than one object.
+
+### Scenario
+In our vehicle manufacturing system, a ConfigurationManager is used to store configurations. Using the Singleton pattern, we can make sure there's only one instance of this manager.
+
+Implementation
+ConfigurationManager.java (Singleton Class)
+```java
+package utilities;
+
+public class ConfigurationManager {
+private static ConfigurationManager instance;
+private String configuration;
+
+    private ConfigurationManager() {
+        // private constructor to restrict instantiation
+    }
+
+    public static synchronized ConfigurationManager getInstance() {
+        if (instance == null) {
+            instance = new ConfigurationManager();
+        }
+        return instance;
+    }
+
+    public String getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(String configuration) {
+        this.configuration = configuration;
+    }
+}
+```
+
+## Prototype Pattern
+### Purpose
+The Prototype pattern creates a fully initialized instance that can be cloned or copied to produce a new instance. This avoids the overhead of creating a fresh object from scratch.
+
+### Scenario
+In our vehicle manufacturing system, once a vehicle is designed with certain configurations, we might want to produce similar vehicles without going through the complete initialization process. Using the Prototype pattern, we can clone an existing vehicle to create a new one.
+
+### Implementation
+Vehicle.java (Modification to Support Cloning)
+```java
+package models;
+
+public abstract class Vehicle implements Cloneable {
+// ... previous code ...
+
+    @Override
+    public Object clone() {
+        Object clone = null;
+        try {
+            clone = super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return clone;
+    }
+}
+```
+
 ## Conclusion
 By leveraging the Factory Method and Builder patterns, we've established a flexible system for creating and customizing vehicles in the manufacturing domain. These patterns not only enhance code readability and maintainability but also provide a robust mechanism for object creation and instantiation.
