@@ -1,3 +1,4 @@
+//Prototype pattern
 package models;
 
 public abstract class Vehicle implements Cloneable {

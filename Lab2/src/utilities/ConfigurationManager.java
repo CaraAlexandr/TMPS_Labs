@@ -1,3 +1,4 @@
+//Singleton pattern
 package utilities;
 
 public class ConfigurationManager {
