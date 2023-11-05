@@ -1,10 +1,15 @@
 package client;
 
-import factory.*;
+import factory.CarBuilder;
+import factory.VehicleBuilder;
+import factory.VehicleFactory;
 import models.*;
 import utilities.*;
 
 public class Main {
+    /**
+     *
+     */
     public static void main(String[] args) {
 
         // Using Factory pattern
@@ -65,12 +70,12 @@ public class Main {
         // Using Proxy pattern
         System.out.println("\n====================\nProxy Pattern:\n====================");
         VehicleInspectionProxy inspectionProxy = new VehicleInspectionProxy(customCarWithFeatures);
-        inspectionProxy.inspectVehicle();
+        inspectionProxy.displayDetails();
 
         customCarWithFeatures.setColor("Yellow");
         customCarWithFeatures.setEngineType("Gasoline");
         customCarWithFeatures.setNumberOfWheels(4);
-        inspectionProxy.inspectVehicle();
+        inspectionProxy.displayDetails();
 
         // Using Facade pattern
         System.out.println("\n====================\nFacade Pattern:\n====================");
@@ -85,17 +90,45 @@ public class Main {
 
         // Using Composite pattern
         System.out.println("\n====================\nComposite Pattern:\n====================");
-        VehicleComponent car1 = new SingleVehicle(car); // Assuming 'car' is an instance of the Vehicle class
-        VehicleComponent car2 = new SingleVehicle(motorcycle); // Assuming 'motorcycle' is an instance of the Vehicle class
+        VehicleComponent car1 = new SingleVehicle(car);
+        VehicleComponent car2 = new SingleVehicle(motorcycle);
         VehicleFleet fleet1 = new VehicleFleet();
         fleet1.add(car1);
         fleet1.add(car2);
 
-        VehicleComponent truckComponent = new SingleVehicle(truck); // Assuming 'truck' is an instance of the Vehicle class
+        VehicleComponent truckComponent = new SingleVehicle(truck);
         VehicleFleet mainFleet = new VehicleFleet();
         mainFleet.add(fleet1);
         mainFleet.add(truckComponent);
 
-        mainFleet.displayDetails(); // This will display details for car, motorcycle, and truck
+        mainFleet.displayDetails();
+
+        System.out.println("\n======================================================================================");
+
+
+        // Using Strategy pattern
+        System.out.println("\n====================\nStrategy Pattern:\n====================");
+
+        // Example: Construct a Motorcycle Factory
+        Factory motorcycleFactoryDetails = new Factory("MotoWorks", "456 Bike Rd", "555-6789", "info@motoworks.com", "www.motoworks.com", "Jane Smith", FactoryType.MOTORCYCLE);
+        FactoryConstructionContext motorcycleConstructionContext = new FactoryConstructionContext(motorcycleFactoryDetails.getFactoryType());
+        motorcycleConstructionContext.constructFactory(motorcycleFactoryDetails);
+        motorcycleFactoryDetails.displayDetails();
+
+        System.out.println("\n======================================================================================");
+        // Example: Construct a Car Factory
+        Factory carFactoryDetails = new Factory("AutoBuild", "1234 Car Ave", "555-2345", "contact@autobuild.com", "www.autobuild.com", "Mike Johnson", FactoryType.CAR);
+        FactoryConstructionContext carConstructionContext = new FactoryConstructionContext(carFactoryDetails.getFactoryType());
+        carConstructionContext.constructFactory(carFactoryDetails);
+        carFactoryDetails.displayDetails();
+
+        System.out.println("\n======================================================================================");
+        // Example: Construct a Truck Factory
+        Factory truckFactoryDetails = new Factory("TruckMakers", "7890 Truck Blvd", "555-7890", "sales@truckmakers.com", "www.truckmakers.com", "Sally Wheeler", FactoryType.TRUCK);
+        FactoryConstructionContext truckConstructionContext = new FactoryConstructionContext(truckFactoryDetails.getFactoryType());
+        truckConstructionContext.constructFactory(truckFactoryDetails);
+        truckFactoryDetails.displayDetails();
+
+        //
     }
 }

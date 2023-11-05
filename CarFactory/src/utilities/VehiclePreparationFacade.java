@@ -7,6 +7,7 @@ public class VehiclePreparationFacade {
         addAccessories();
     }
 
+
     private void testVehicle() {
         System.out.println("Testing the vehicle...");
     }
