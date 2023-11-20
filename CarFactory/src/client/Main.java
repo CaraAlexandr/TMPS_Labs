@@ -1,8 +1,6 @@
 package client;
 
-import factory.CarBuilder;
-import factory.VehicleBuilder;
-import factory.VehicleFactory;
+import factory.*;
 import models.*;
 import utilities.*;
 
@@ -129,6 +127,32 @@ public class Main {
         truckConstructionContext.constructFactory(truckFactoryDetails);
         truckFactoryDetails.displayDetails();
 
-        //
+        // Observer Pattern Usage
+        System.out.println("\n====================\nObserver Pattern:\n====================");
+        FactoryNotifier factoryNotifier = new FactoryNotifier();
+        factoryNotifier.addObserver(new QualityControl());
+        factoryNotifier.addObserver(new LogisticsDepartment());
+        factoryNotifier.addObserver(new SalesDepartment());
+
+        // Notify observers when a vehicle is produced
+        factoryNotifier.setMessage("New Car Produced");
+
+        // Mediator Pattern Usage
+        System.out.println("\n====================\nMediator Pattern:\n====================");
+        FactoryMediator mediator = new FactoryMediatorImpl();
+
+        ProductionLine productionLine = new ProductionLine(mediator);
+        Inventory inventory = new Inventory(mediator);
+        QualityControlUnit qualityControlUnit = new QualityControlUnit(mediator);
+
+        // Registering components with the mediator
+        mediator.registerComponent(productionLine);
+        mediator.registerComponent(inventory);
+        mediator.registerComponent(qualityControlUnit);
+
+        // Simulating communication between components
+        productionLine.send("Vehicle ready for inspection");
+        inventory.send("Inventory updated with new vehicle");
+        qualityControlUnit.send("Quality check complete");
     }
 }

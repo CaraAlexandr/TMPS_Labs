@@ -2,12 +2,12 @@ package utilities;
 
 import models.Factory;
 import models.FactoryType;
-import strategy.*;
+import utilities.strategy.*;
 
 public class FactoryConstructionContext {
     private final FactoryConstructionStrategy strategy;
 
-    // Setting the strategy based on the factory type
+    // Setting the utilities.strategy based on the factory type
     public FactoryConstructionContext(FactoryType factoryType) {
         switch (factoryType) {
             case MOTORCYCLE:

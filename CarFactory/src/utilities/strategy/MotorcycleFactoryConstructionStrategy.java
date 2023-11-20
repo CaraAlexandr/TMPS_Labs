@@ -1,4 +1,4 @@
-package strategy;
+package utilities.strategy;
 
 import models.Factory;
 
